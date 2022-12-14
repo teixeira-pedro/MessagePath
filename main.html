@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>main.html</title>
+</head>
+<body>
+    <a href="http://www.ic.uff.br"><img src="https://site.ic.uff.br/wp-content/uploads/2020/08/logo-ic.png" width="200px"></a>
+    <a href="https://github.com/MeLLL-UFF"><img src="https://avatars.githubusercontent.com/u/5229022?s=200&v=4" width="200px"></a>
+          Conecta MessagePath<br><br>
+        <table style="text-align: left; height: 461px; width: 1275px;" border="1" cellpadding="2" cellspacing="2">
+            <tbody>
+                <tr>
+                    <td style="height: 57px; width: 1025px;">
+                        <!--                        %botoesMetodosNLP%-->
+                        <button name="NLP_SimilaridadeJaccand" type="button" onclick="selectNLP('SimilaridadeJaccand')">Jaccard</button>
+                        <button name="NLP_VectorizaTFID" type="button" onclick="selectNLP('VectorizaTFID')">TF-IDF</button>
+                        <button name="NLP_VectorizaBOW" type="button" onclick="selectNLP('VectorizaBOW')">BOW</button>
+                        <button name="NLP_VectorizaSpaCy2" type="button" onclick="selectNLP('VectorizaSpaCy2')">Word2Vec</button>
+                    </td>
+                    <td colspan="1" rowspan="2" style="height: 57px; width: 230px;">
+                        <button name="Teste" type="button" onclick="mostraGrafo()">
+                            MOSTRAR GRAFO
+                        </button>
+                        <button name="LIMPA" type="button" onclick="limpa()">
+                            LIMPA
+                        </button>
+                    </td>
+                    <td colspan="1" rowspan="2" style="height: 57px; width: 111px;">
+                        Claims
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 46px; width: 1025px;">
+                        <!--%botoesTau%-->
+                        <button name="tau_40.0" type="button" onclick="selectTau('40.0')">40.0 % similar</button>
+                        <button name="tau_50.0" type="button" onclick="selectTau('50.0')">50.0 % similar</button>
+                        <button name="tau_80.0" type="button" onclick="selectTau('80.0')">80.0 % similar</button>
+                        <button name="tau_85.0" type="button" onclick="selectTau('85.0')">85.0 % similar</button>
+                        <button name="tau_90.0" type="button" onclick="selectTau('90.0')">90.0 % similar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 348px; width: 1025px;"> <iframe id="grafo" src="grafos/Claim_4_VectorizaSpaCy2_40.0.html" height="800" width="1600" title="grafo claim"></iframe> </td>
+                    <td colspan="2" rowspan="1" style="height: 348px; width: 230px;">
+                        <!--%botoesClaims%-->
+                        <!--<button name="claim_1" type="button" onclick="selectClaim('1')">
+        %TEXTO_CLAIM_1%
+    </button>
+    <br />-->
+                        <button name="claim_0" type="button" onclick="selectClaim('0')">fraude eleição</button><br />
+                        <button name="claim_1" type="button" onclick="selectClaim('1')">vacina sim</button><br />
+                        <button name="claim_2" type="button" onclick="selectClaim('2')">tratamento precoce salva</button><br />
+                        <button name="claim_3" type="button" onclick="selectClaim('3')">farsa da covid</button><br />
+                        <button name="claim_4" type="button" onclick="selectClaim('4')">vacina causa miocardite</button><br />
+                    </td>
+                </tr>
+
+                <!--===================================SCRIPTS================================-->
+                <script>
+                    claim = ''
+                    NLP = ''
+                    tau = ''
+
+                    function mostraGrafo() {
+                        if ((claim == '') ) {
+                            alert('FAVOR VERIFICAR, CLAIM NÃO FOI PREENCHIDO ')
+                        } else {
+                            myElement = document.getElementById("grafo")
+                            myElement.src = 'grafos/Claim_' + claim + '_' + NLP + '_' + tau + '.html'
+                            //$(".grafo").attr("src", 'grafos/Claim_' + claim + '_' + NLP + '_' + tau + '.html');
+                            //alert('Claim_' + claim + '_' + NLP + '_' + tau+'.html' )    
+                        }
+
+                    }
+
+                    function selectTau(i) {
+                        tau = i
+                    }
+
+                    function selectNLP(i) {
+                        NLP = i
+                    }
+
+                    function selectClaim(i) {
+                        claim = i
+                    }
+
+                    function limpa() {
+                        claim = ''
+                        NLP = ''
+                        tau = ''
+                        myElement = document.getElementById("grafo")
+                        myElement.src = ''
+        
+                    }
+                    function myFunction(a) {
+                        alert(i);
+                        i = i + 'aaaaa'
+                    }
+                    //alert(i)
+                </script>
+
+            </tbody>
+        </table><br>
+</body>
+</html>
