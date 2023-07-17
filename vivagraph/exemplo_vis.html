@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MessagePath</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        #messagePath {
+            width: 900px;
+            height: 600px;
+            border: 1px solid lightgray;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="messagePath"></div>
+
+    <script type="text/javascript">
+        let nodes = new vis.DataSet([   
+            { id: 1, label: "Nó 1" },
+            { id: 2, label: "Nó 2" },
+            { id: 3, label: "Nó 3" },
+            { id: 4, label: "Nó 4" },
+            { id: 5, label: "Nó 5" },
+        ]);
+        let edges = new vis.DataSet([
+            { from: 1, to: 2, label: "similar a" },
+            { from: 1, to: 3, label: "reação a" },
+            { from: 2, to: 4, label: "similar a" },
+            { from: 2, to: 5 },
+            { from: 3, to: 4 },
+        ]);
+
+        let data = {
+            nodes: nodes,
+            edges: edges
+        };
+
+        let options = {
+            nodes:{
+                color: '#ffffff',
+                fixed: false,
+                font: '12px arial black',
+                scaling: {
+                    label: true
+                },
+                shadow: true,
+                shape: 'circle',
+                margin: 10
+            },
+            edges: {
+                arrows: 'to',
+                color: 'black',
+                scaling: {
+                    label: true,
+                },
+                shadow: true,
+                margin:10
+            }
+        };
+        let container = document.getElementById("messagePath");
+
+        let network = new vis.Network(container, data, options);
+    </script>
+
+</body>
+</html>
+
